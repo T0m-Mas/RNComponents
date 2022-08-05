@@ -8,7 +8,10 @@ export const ModalScreen = () => {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <View style={ViewScreen}>
-      <HeaderTitle title="Modal" />
+      <HeaderTitle
+        title="Custom Modal"
+        subtitle="just a normal modal... but with style"
+      />
       <View style={{height: 50}} />
       <Button
         title="Open Modal"

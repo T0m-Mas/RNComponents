@@ -37,8 +37,13 @@ export const MenuOptions: MenuItem[] = [
     goto: 'SectionListScreen',
   },
   {
-    name: 'ModalScreen',
-    icon: 'list-outline',
+    name: 'Custom Modal',
+    icon: 'copy-outline',
     goto: 'ModalScreen',
+  },
+  {
+    name: 'Infinite Scroll',
+    icon: 'infinite',
+    goto: 'InfiniteScrollScreen',
   },
 ];
