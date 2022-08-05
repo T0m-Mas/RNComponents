@@ -36,4 +36,9 @@ export const MenuOptions: MenuItem[] = [
     icon: 'list-outline',
     goto: 'SectionListScreen',
   },
+  {
+    name: 'ModalScreen',
+    icon: 'list-outline',
+    goto: 'ModalScreen',
+  },
 ];
