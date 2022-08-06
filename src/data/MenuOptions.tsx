@@ -46,4 +46,9 @@ export const MenuOptions: MenuItem[] = [
     icon: 'infinite',
     goto: 'InfiniteScrollScreen',
   },
+  {
+    name: 'Slide Show',
+    icon: 'albums-outline',
+    goto: 'SlideShowScreen',
+  },
 ];
