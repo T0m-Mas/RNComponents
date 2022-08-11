@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -9,16 +9,16 @@ import {
   ScrollView,
 } from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
+import {ThemeContext} from '../context/Theme/ThemeContex';
 import {useForm} from '../hooks/useForm';
-import {
-  ViewScreen,
-  primary,
-  textColor,
-  inactiveColor,
-  TextSubTitle,
-} from '../theme/globals';
+import {ViewScreen, TextTitle} from '../styles/globals';
 
 export const TextInputScreen = () => {
+  const {
+    theme: {
+      colors: {primary, text, inactive},
+    },
+  } = useContext(ThemeContext);
   const {name, email, number, onChange} = useForm({
     name: '',
     email: '',
@@ -34,25 +34,25 @@ export const TextInputScreen = () => {
       <View style={container}>
         <ScrollView>
           <View style={{marginVertical: 20}}>
-            <Text style={TextSubTitle}>{name}</Text>
-            <Text style={TextSubTitle}>{email}</Text>
-            <Text style={TextSubTitle}>{number}</Text>
+            <Text style={{...TextTitle, color: text}}>{name}</Text>
+            <Text style={{...TextTitle, color: text}}>{email}</Text>
+            <Text style={{...TextTitle, color: text}}>{number}</Text>
           </View>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={{flex: 1}}>
             <View>
               <TextInput
-                style={input}
-                placeholderTextColor={inactiveColor}
+                style={{...input, borderColor: primary, color: text}}
+                placeholderTextColor={inactive}
                 placeholder="Give me your name..."
                 autoCapitalize={'words'}
                 autoCorrect={false}
                 onChangeText={e => onChange('name', e)}
               />
               <TextInput
-                style={input}
-                placeholderTextColor={inactiveColor}
+                style={{...input, borderColor: primary, color: text}}
+                placeholderTextColor={inactive}
                 placeholder="...your email..."
                 autoComplete={'email'}
                 autoCorrect={false}
@@ -61,8 +61,8 @@ export const TextInputScreen = () => {
                 onChangeText={e => onChange('email', e)}
               />
               <TextInput
-                style={input}
-                placeholderTextColor={inactiveColor}
+                style={{...input, borderColor: primary, color: text}}
+                placeholderTextColor={inactive}
                 placeholder="...and your telephone number."
                 keyboardType={'number-pad'}
                 onChangeText={e => onChange('number', e)}
@@ -88,7 +88,5 @@ const {container, input} = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 5,
     borderWidth: 0.5,
-    borderColor: primary,
-    color: textColor,
   },
 });

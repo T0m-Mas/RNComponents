@@ -8,7 +8,8 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {primary, textColor} from '../theme/globals';
+import {useContext} from 'react';
+import {ThemeContext} from '../context/Theme/ThemeContex';
 
 export interface MenuItem {
   name: string;
@@ -21,6 +22,9 @@ export interface Props {
 
 export const MainMenu = ({menuItems}: Props) => {
   const navigation = useNavigation();
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
 
   const {width} = useWindowDimensions();
   const renderMenuOption = ({name, icon, goto}: MenuItem) => {
@@ -42,7 +46,7 @@ export const MainMenu = ({menuItems}: Props) => {
             borderRightWidth: 0,
             borderLeftWidth: 0,
             borderWidth: 0.7,
-            borderColor: primary,
+            borderColor: colors.primary,
             marginVertical: 5,
             overflow: 'hidden',
           }}>
@@ -53,12 +57,12 @@ export const MainMenu = ({menuItems}: Props) => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Icon name={icon} size={25} color={primary} />
+            <Icon name={icon} size={25} color={colors.primary} />
           </View>
           <Text
             style={{
               fontSize: 15,
-              color: textColor,
+              color: colors.text,
               width: '65%',
             }}>
             {name}
@@ -73,6 +77,7 @@ export const MainMenu = ({menuItems}: Props) => {
       data={menuItems}
       renderItem={({item}) => renderMenuOption(item)}
       keyExtractor={item => item.name}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

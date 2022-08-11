@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Button, Modal, View, Text, TouchableOpacity} from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
-import {ViewScreen, textColor, primary, background} from '../theme/globals';
+import {ViewScreen} from '../styles/globals';
 import {useState} from 'react';
+import {ThemeContext} from '../context/Theme/ThemeContex';
 
 export const ModalScreen = () => {
+  const {
+    theme: {
+      colors: {primary, text, background},
+    },
+  } = useContext(ThemeContext);
   const [isVisible, setIsVisible] = useState(false);
   return (
     <View style={ViewScreen}>
@@ -38,8 +44,8 @@ export const ModalScreen = () => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Text style={{color: textColor}}>This is a custom modal</Text>
-            <Text style={{color: textColor}}>press ok to continue</Text>
+            <Text style={{color: text}}>This is a custom modal</Text>
+            <Text style={{color: text}}>press ok to continue</Text>
             <TouchableOpacity
               style={{marginTop: 20, padding: 10}}
               onPress={() => setIsVisible(false)}>

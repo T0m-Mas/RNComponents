@@ -2,14 +2,18 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {MainMenu} from '../components/MainMenu';
 import {MenuOptions} from '../data/MenuOptions';
-import {primary, textColor, ViewScreen} from '../theme/globals';
+import {useContext} from 'react';
+import {ThemeContext} from '../context/Theme/ThemeContex';
 
 export const HomeScreen = () => {
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
   return (
-    <View style={{...ViewScreen, alignItems: 'center'}}>
+    <View style={{flex: 1, alignItems: 'center'}}>
       <Text
         style={{
-          color: primary,
+          color: colors.primary,
           fontSize: 32,
           marginTop: 10,
           marginBottom: -10,
@@ -20,7 +24,7 @@ export const HomeScreen = () => {
       </Text>
       <Text
         style={{
-          color: textColor,
+          color: colors.text,
           fontSize: 24,
           marginBottom: 10,
           fontWeight: '700',

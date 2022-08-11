@@ -1,7 +1,7 @@
 import React from 'react';
 import {Alert, Button, StyleSheet, View} from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
-import {ViewScreen} from '../theme/globals';
+import {ViewScreen} from '../styles/globals';
 
 export const AlertScreen = () => {
   const showAlert = () => {

@@ -51,4 +51,9 @@ export const MenuOptions: MenuItem[] = [
     icon: 'albums-outline',
     goto: 'SlideShowScreen',
   },
+  {
+    name: 'Change Theme',
+    icon: 'flask-outline',
+    goto: 'ThemeScreen',
+  },
 ];

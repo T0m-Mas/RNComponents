@@ -1,8 +1,15 @@
-import React, {useRef, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {Animated, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {primary, textColor, ViewScreen} from '../theme/globals';
+import {ThemeContext} from '../context/Theme/ThemeContex';
+import {ViewScreen} from '../styles/globals';
 
 export const Animation101Screen = () => {
+  const {
+    theme: {
+      colors: {primary, text},
+    },
+  } = useContext(ThemeContext);
+
   const borderRadius = useRef(new Animated.Value(0)).current;
   const [disabled, setDisabled] = useState(false);
   const [buttonText, setButtonText] = useState('Touch Me');
@@ -39,8 +46,9 @@ export const Animation101Screen = () => {
     <View style={ViewScreen}>
       <View style={styles.container}>
         <TouchableOpacity onPress={goRound} disabled={disabled}>
-          <Animated.View style={{...styles.box, borderRadius}}>
-            <Text style={styles.textbox}>{buttonText}</Text>
+          <Animated.View
+            style={{...styles.box, borderRadius, backgroundColor: primary}}>
+            <Text style={{...styles.textbox, color: text}}>{buttonText}</Text>
           </Animated.View>
         </TouchableOpacity>
       </View>
@@ -55,12 +63,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textbox: {
-    color: textColor,
     fontSize: 15,
     fontWeight: '600',
   },
   box: {
-    backgroundColor: primary,
     height: 150,
     width: 150,
     alignItems: 'center',

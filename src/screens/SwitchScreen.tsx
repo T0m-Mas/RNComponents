@@ -1,11 +1,18 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {CustomSwitch} from '../components/CustomSwitch';
 import {HeaderTitle} from '../components/HeaderTitle';
-import {inactiveColor, primary, ViewScreen, TextNormal} from '../theme/globals';
+import {TextNormal, ViewScreen} from '../styles/globals';
+import {ThemeContext} from '../context/Theme/ThemeContex';
 
 export const SwitchScreen = () => {
+  const {
+    theme: {
+      colors: {text, primary, inactive},
+    },
+  } = useContext(ThemeContext);
+
   const [{active, hungry, happy}, setState] = useState({
     active: true,
     hungry: false,
@@ -26,7 +33,7 @@ export const SwitchScreen = () => {
         subtitle="On/Off, 0 or 1, that sort of things"
       />
       <View style={style.switchRow}>
-        <Text style={TextNormal}>is Active</Text>
+        <Text style={{...TextNormal, color: text}}>is Active</Text>
         <CustomSwitch
           value={active}
           onChange={e => {
@@ -35,7 +42,7 @@ export const SwitchScreen = () => {
         />
       </View>
       <View style={style.switchRow}>
-        <Text style={TextNormal}>is Hungry</Text>
+        <Text style={{...TextNormal, color: text}}>is Hungry</Text>
         <CustomSwitch
           value={hungry}
           onChange={e => {
@@ -44,7 +51,7 @@ export const SwitchScreen = () => {
         />
       </View>
       <View style={style.switchRow}>
-        <Text style={TextNormal}>is Happy</Text>
+        <Text style={{...TextNormal, color: text}}>is Happy</Text>
         <CustomSwitch
           value={happy}
           onChange={e => {
@@ -53,20 +60,16 @@ export const SwitchScreen = () => {
         />
       </View>
       <View style={style.stateView}>
-        <Icon
-          name="power"
-          size={120}
-          color={active ? primary : inactiveColor}
-        />
+        <Icon name="power" size={120} color={active ? primary : inactive} />
         <Icon
           name="fast-food-outline"
           size={120}
-          color={hungry ? primary : inactiveColor}
+          color={hungry ? primary : inactive}
         />
         <Icon
           name="happy-outline"
           size={120}
-          color={happy ? primary : inactiveColor}
+          color={happy ? primary : inactive}
         />
       </View>
     </View>

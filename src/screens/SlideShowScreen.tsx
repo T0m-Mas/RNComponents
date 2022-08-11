@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useContext, useRef} from 'react';
 import {
   FlatList,
   Image,
@@ -9,9 +9,14 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Slides} from '../data/SlideData';
-import {primary, textColor} from '../theme/globals';
 import {useState} from 'react';
+import {ThemeContext} from '../context/Theme/ThemeContex';
 export const SlideShowScreen = () => {
+  const {
+    theme: {
+      colors: {primary, text},
+    },
+  } = useContext(ThemeContext);
   const [index, setIndex] = useState(0);
   const {width, height} = useWindowDimensions();
 
@@ -38,6 +43,7 @@ export const SlideShowScreen = () => {
         data={Slides}
         disableIntervalMomentum={true}
         pagingEnabled={true}
+        showsHorizontalScrollIndicator={false}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
         renderItem={({item}) => {
           return (
@@ -70,7 +76,7 @@ export const SlideShowScreen = () => {
                 </Text>
                 <Text
                   style={{
-                    color: textColor,
+                    color: text,
                   }}>
                   {item.desc}
                 </Text>
@@ -94,7 +100,7 @@ export const SlideShowScreen = () => {
             <Icon
               key={s.desc}
               name="ellipse"
-              color={i === index ? primary : textColor}
+              color={i === index ? primary : text}
               style={{paddingHorizontal: 5}}
               size={i === index ? 8 : 5}
             />
